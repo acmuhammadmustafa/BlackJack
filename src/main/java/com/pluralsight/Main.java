@@ -1,17 +1,17 @@
 package com.pluralsight;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Deck deck = new Deck();
+        Hand hand1 = new Hand();
+        // deal 5 cards
+        for(int I = 0; I < 5; I++) {
+        // get a card from the deck
+            Card card = deck.deal();
+        // deal that card to the hand
+            hand1.Deal(card);
         }
+        int handValue = hand1.getValue();
+        System.out.println("This hand is worth " + handValue);
     }
 }
