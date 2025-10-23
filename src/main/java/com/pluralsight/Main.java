@@ -1,38 +1,65 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+
 public class Main {
 
 
     public static void main(String[] args) {
-        Deck deck = new Deck();
+
+        int numberOfPlayers = ConsoleHelper.promptForInt("How many players are there?");
+        ArrayList<Player> players = new ArrayList<>();
 
 
-        Player Player1 = new Player(ConsoleHelper.promptForString("Enter player 1's name").trim(), new Hand());
-        Player Player2 = new Player(ConsoleHelper.promptForString("Enter player 2's name").trim(), new Hand());
+        Player Player1 = new Player(ConsoleHelper.promptForString("Enter player 1's name").trim());
+        Player Player2 = new Player(ConsoleHelper.promptForString("Enter player 2's name").trim());
 
-        deck.shuffle();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 1; i < numberOfPlayers+1; i++) {
             // get a card from the deck
-            Card card = deck.deal();
-
-
-
-            // deal that card to the hand
-            Player1.getHand().Deal(deck.deal());
-            Player2.getHand().Deal(deck.deal());
+            String name = (ConsoleHelper.promptForString("Enter player " + i + "'s name").trim());
+            Player p = new Player(name);
+            players.add(p);
         }
 
+        Deck deck = new Deck();
+        deck.shuffle();
+
+        // deal that card to the hand
+        for (Player p : players) {
+            p.getHand().Deal(deck.deal());
+        }
+
+        for (Player p : players) {
+            p.getHand().Deal(deck.deal());
+        }
+
+
+
+        Player1.getHand().Deal(deck.deal());
+        Player2.getHand().Deal(deck.deal());
+
+
+        int winningScore = 0;
+
+        for(Player currentPlayer: players){
+            System.out.println(currentPlayer.getName() + " has " + currentPlayer.getHand().getValue());
+            if (currentPlayer.getHand().getValue() > winningScore){
+                winningScore = currentPlayer.getHand().getValue();
+            }
+        }
 //            String handShown
+        for (Player p : players) {
+            p.getHand().Deal(deck.deal());
+        }
+        int handWorth1 = Player1.getHand().getValue();
+        int handWorth2 = Player2.getHand().getValue();
 
-            int handWorth1 = Player1.getHand().getValue();
-            int handWorth2 = Player2.getHand().getValue();
+        System.out.println();
 
-            System.out.println();
-
-            System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
+        System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
 //            System.out.printf(Player1.getHand().showHand(),);
-            System.out.println(Player2 + " hand is worth " + handWorth2+ " (" + Player2.getHand().getAllCardsAsString() + ")");
+        System.out.println(Player2 + " hand is worth " + handWorth2 + " (" + Player2.getHand().getAllCardsAsString() + ")");
 
         System.out.println(deck.getSize() + " cards left in the deck.");
 
@@ -40,52 +67,49 @@ public class Main {
 
         System.out.println("====== What's Next? ======");
         String nextUp = "What would you like to do?\n \n H) Hit\n S) Stand\n X) Exit\n=======================\n";
-        System.out.println(nextUp);
+
 
         String command;
 
         do {
-        command = ConsoleHelper.promptForString("Player 1: Enter your command").toLowerCase().trim();
-        switch (command) {
-            case "h":
-                for (int i = 2; i < 3; i++) {
-                    // get a card from the deck
-                    Player1.getHand().Deal(deck.deal());
+            System.out.println(nextUp);
+            command = ConsoleHelper.promptForString("Player 1: Enter your command").toLowerCase().trim();
+            switch (command) {
+                case "h":
+                    for (int i = 2; i < 3; i++) {
+                        // get a card from the deck
+                        Player1.getHand().Deal(deck.deal());
 
-                    deck.shuffle();
+                        deck.shuffle();
 
-                    // deal that card to the hand
-                    Player1.getHand().Deal(deck.deal());
-                }
-                System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
-                System.out.println("======================");
-                break;
+                        // deal that card to the hand
+                        Player1.getHand().Deal(deck.deal());
+                    }
+                    int handHitWorth1 = Player1.getHand().getValue();
+                    System.out.println(Player1 + " hand is worth " + handHitWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
+                    System.out.println(deck.getSize() + " cards left in the deck.");
+                    System.out.println("======================");
+                    break;
 
-            case "s":
-                System.out.println(Player1 + " hand is worth " + handWorth1+ " (" + Player1.getHand().getAllCardsAsString() + ")");
-                System.out.println("======================");
-                break;
+                case "s":
+                    System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
+                    System.out.println("======================");
+                    break;
 
-            case "x":
-                System.out.println("Goodbye!");
-                return;
+                case "x":
+                    System.out.println("Goodbye!");
+                    return;
 
-            default:
-                System.out.println("Invalid input. Please enter a valid option.");
-                System.out.println("======================");
-        }
-    } while (!command.equalsIgnoreCase("x"));
-}
-
+                default:
+                    System.out.println("Invalid input. Please enter a valid option.");
+                    System.out.println("======================");
+            }
+        } while (!command.equalsIgnoreCase("x"));
+    }
 
 
     private static void standCard() {
     }
 
 
-
-
 }
-
-
-

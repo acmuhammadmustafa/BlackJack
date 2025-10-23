@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dc619a3f-2e27-4b5f-b26c-03ba0bfb35c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Hand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
