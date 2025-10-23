@@ -4,65 +4,88 @@ public class Main {
 
 
     public static void main(String[] args) {
-        // Deck deck = new Deck();
-        // Hand hand1 = new Hand();
-
-        promptForPlayers();
+        Deck deck = new Deck();
 
 
-//
-//        // deal 5 cards
-//        for(int i = 0; i < 5; i++) {
-//        // get a card from the deck
-//            Card card = deck.deal();
-//        // deal that card to the hand
-//            hand1.Deal(card);
-//        }
-//
-//        int handValue = hand1.getValue();
-//        System.out.println("This hand is worth " + handValue);
-    }
+        Player Player1 = new Player(ConsoleHelper.promptForString("Enter player 1's name").trim(), new Hand());
+        Player Player2 = new Player(ConsoleHelper.promptForString("Enter player 2's name").trim(), new Hand());
 
-    public static void promptForPlayers() {
-        Deck deck1 = new Deck();
-        deck1.shuffle();
-        Hand hand = new Hand();
-        //get all the names
-        Player Player1 = new Player(ConsoleHelper.promptForString("Enter player 1's name"), new Hand());
-        Player Player2 = new Player(ConsoleHelper.promptForString("Enter player 2's name"), new Hand());
-//        Player Player3 = new Player(ConsoleHelper.promptForString("Enter player 3's name"), new Hand());
-//        Player Player4 = new Player(ConsoleHelper.promptForString("Enter player 4's name"), new Hand());
-//        Player Player5 = new Player(ConsoleHelper.promptForString("Enter player 5's name"), new Hand());
-//        Player Player6 = new Player(ConsoleHelper.promptForString("Enter player 6's name"), new Hand());
-//        Player Player7 = new Player(ConsoleHelper.promptForString("Enter player 7's name"), new Hand());
-
+        deck.shuffle();
 
         for (int i = 0; i < 2; i++) {
             // get a card from the deck
-            Card card = deck1.deal();
+            Card card = deck.deal();
+
+
+
             // deal that card to the hand
-            hand.Deal(card);
-
-                    int handValue = hand.getValue();
-            System.out.println(Player1 + " hand is worth " + handValue);
-            System.out.println(Player2 + " hand is worth " + handValue);
-    }
-            Player1.getHand().Deal(deck1.deal());
-            Player2.getHand().Deal(deck1.deal());
-//        Player3.getHand().Deal(deck1.deal());
-//        Player4.getHand().Deal(deck1.deal());
-//        Player5.getHand().Deal(deck1.deal());
-//        Player6.getHand().Deal(deck1.deal());
-//        Player7.getHand().Deal(deck1.deal());
-
-            Player1.getHand().Deal(deck1.deal());
-            Player2.getHand().Deal(deck1.deal());
-//        Player3.getHand().Deal(deck1.deal());
-//        Player4.getHand().Deal(deck1.deal());
-//        Player5.getHand().Deal(deck1.deal());
-//        Player6.getHand().Deal(deck1.deal());
-//        Player7.getHand().Deal(deck1.deal());
-
-
+            Player1.getHand().Deal(deck.deal());
+            Player2.getHand().Deal(deck.deal());
         }
+
+//            String handShown
+
+            int handWorth1 = Player1.getHand().getValue();
+            int handWorth2 = Player2.getHand().getValue();
+
+            System.out.println();
+
+            System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
+//            System.out.printf(Player1.getHand().showHand(),);
+            System.out.println(Player2 + " hand is worth " + handWorth2+ " (" + Player2.getHand().getAllCardsAsString() + ")");
+
+        System.out.println(deck.getSize() + " cards left in the deck.");
+
+        System.out.println();
+
+        System.out.println("====== What's Next? ======");
+        String nextUp = "What would you like to do?\n \n H) Hit\n S) Stand\n X) Exit\n=======================\n";
+        System.out.println(nextUp);
+
+        String command;
+
+        do {
+        command = ConsoleHelper.promptForString("Player 1: Enter your command").toLowerCase().trim();
+        switch (command) {
+            case "h":
+                for (int i = 2; i < 3; i++) {
+                    // get a card from the deck
+                    Player1.getHand().Deal(deck.deal());
+
+                    deck.shuffle();
+
+                    // deal that card to the hand
+                    Player1.getHand().Deal(deck.deal());
+                }
+                System.out.println(Player1 + " hand is worth " + handWorth1 + " (" + Player1.getHand().getAllCardsAsString() + ")");
+                System.out.println("======================");
+                break;
+
+            case "s":
+                System.out.println(Player1 + " hand is worth " + handWorth1+ " (" + Player1.getHand().getAllCardsAsString() + ")");
+                System.out.println("======================");
+                break;
+
+            case "x":
+                System.out.println("Goodbye!");
+                return;
+
+            default:
+                System.out.println("Invalid input. Please enter a valid option.");
+                System.out.println("======================");
+        }
+    } while (!command.equalsIgnoreCase("x"));
+}
+
+
+
+    private static void standCard() {
     }
+
+
+
+
+}
+
+
+

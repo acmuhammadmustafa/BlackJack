@@ -19,6 +19,8 @@ public class Hand {
         return cards.size();
     }
 
+
+
     // The Hand uses the methods of each card to determine the value of each card - and adds up all values
     public int getValue(){
         int value = 0;
@@ -28,6 +30,30 @@ public class Hand {
             card.flip(); // hide the card again
         }
         return value;
+    }
+
+    public void showHand(){
+        for(Card card: cards){
+            card.flip(); // turn the card over to see the value
+            System.out.println(card.getValue() + " of " + card.getSuit());
+            card.flip(); // hide the card again
+        }
+
+    }
+
+    public String getAllCardsAsString(){
+        StringBuilder sb = new StringBuilder();
+        for(Card card: cards){
+            card.flip(); // turn the card over to see the value
+            sb.append(card.getValue())
+                    .append(" of ")
+                    .append(card.getSuit() + " | ");
+
+
+
+            card.flip(); // hide the card again
+        }
+        return sb.toString();
     }
 }
 

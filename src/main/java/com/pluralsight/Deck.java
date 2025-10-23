@@ -27,6 +27,7 @@ public class Deck {
     // deal the top card (if there are any cards left
         if(cards.size() > 0){
             Card card = cards.remove(0);
+            Collections.shuffle(cards);
             return card;
         } else {
             return null;
